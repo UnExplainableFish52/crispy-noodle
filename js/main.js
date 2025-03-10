@@ -1,38 +1,107 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Theme toggling
+    // ===== Theme Toggling =====
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
-
+    
     function toggleTheme() {
         const body = document.documentElement;
         const isDark = body.getAttribute('data-theme') !== 'light';
-
+        
         body.setAttribute('data-theme', isDark ? 'light' : 'dark');
         themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
-
+        
         localStorage.setItem('theme', isDark ? 'light' : 'dark');
     }
+    
 
     // Set initial theme
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     themeIcon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-
+    
     themeToggle.addEventListener('click', toggleTheme);
+    
+    // ===== Mobile Menu Functionality =====
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
         });
     });
-
-    // Animate skill bars on scroll
+    
+    // Create menu overlay
+    let menuOverlay = document.querySelector('.menu-overlay');
+    if (!menuOverlay) {
+        menuOverlay = document.createElement('div');
+        menuOverlay.classList.add('menu-overlay');
+        document.body.appendChild(menuOverlay);
+    }
+    
+    // Toggle menu function
+    function toggleMenu() {
+        mobileMenuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        
+        // Prevent body scrolling when menu is open
+        if (navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Toggle menu when hamburger is clicked
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMenu();
+        });
+    }
+    
+    // Close menu when clicking the overlay
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', toggleMenu);
+    }
+    
+    // Close menu when clicking a navigation link
+    const navLinkElements = document.querySelectorAll('.nav-link');
+    navLinkElements.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+    
+    // ===== Smooth Scroll for Navigation =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (document.querySelector(href)) {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // ===== Skill Bars Animation =====
     const skillBars = document.querySelectorAll('.skill-progress');
-
+    
     function animateSkillBars() {
         skillBars.forEach(bar => {
             const percentage = bar.parentElement.previousElementSibling.lastElementChild.textContent;
@@ -42,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 200);
         });
     }
-
+    
     // Run animation when skills section is in view
     const skillsSection = document.querySelector('.skills-container');
     if (skillsSection) {
@@ -53,20 +122,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
+        
         observer.observe(skillsSection);
     }
-
-    // Custom cursor effect
+    
+    // ===== Custom Cursor Effect =====
     const cursor = document.createElement('div');
     cursor.classList.add('custom-cursor');
     document.body.appendChild(cursor);
-
+    
     document.addEventListener('mousemove', (e) => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     });
-
+    
     // Add hover effect to interactive elements
     const interactiveElements = document.querySelectorAll('a, button');
     interactiveElements.forEach(el => {
@@ -75,88 +144,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         el.addEventListener('mouseleave', () => {
             cursor.classList.remove('cursor-hover');
-        });// Theme toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeToggle = document.getElementById('theme-toggle');
-            const iconElement = themeToggle.querySelector('i');
-            
-            // Check if user previously set a theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.body.setAttribute('data-theme', savedTheme);
-                updateIcon(savedTheme === 'light');
-            }
-            
-            // Toggle theme when clicked
-            themeToggle.addEventListener('click', function() {
-                const currentTheme = document.body.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? '' : 'light';
-                
-                document.body.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                
-                updateIcon(newTheme === 'light');
-            });
-            
-            function updateIcon(isLight) {
-                if (isLight) {
-                    iconElement.classList.remove('fa-sun');
-                    iconElement.classList.add('fa-moon');
-                } else {
-                    iconElement.classList.remove('fa-moon');
-                    iconElement.classList.add('fa-sun');
-                }
-            }
-            
-            // Add active class to current page in navigation
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href').split('/').pop();
-                if (linkHref === currentPage || 
-                    (currentPage === '' && linkHref === 'index.html') || 
-                    (currentPage === 'index.html' && linkHref === 'index.html')) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Add smooth scroll behavior for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-            
-            // Add animation to skill bars (if on skills page)
-            const skillBars = document.querySelectorAll('.skill-progress');
-            if (skillBars.length > 0) {
-                // Use IntersectionObserver to animate when scrolled into view
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.width = entry.target.style.width;
-                            entry.target.style.transition = 'width 1s ease-in-out';
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                });
-                
-                skillBars.forEach(bar => {
-                    // Initially set width to 0
-                    const targetWidth = bar.style.width;
-                    bar.style.width = '0';
-                    
-                    // Then observe
-                    setTimeout(() => {
-                        observer.observe(bar);
-                    }, 100);
-                });
-            }
         });
+    });
+    
+    // ===== Active Navigation Link =====
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    navLinkElements.forEach(link => {
+        const linkHref = link.getAttribute('href').split('/').pop();
+        if (linkHref === currentPage || 
+            (currentPage === '' && linkHref === 'index.html') || 
+            (currentPage === 'index.html' && linkHref === 'index.html')) {
+            link.classList.add('active');
+        }
     });
 });
