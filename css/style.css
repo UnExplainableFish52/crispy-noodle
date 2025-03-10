@@ -346,7 +346,6 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    -text-fill-color: transparent;
     display: inline-block;
     letter-spacing: 1px;
 }
@@ -1917,6 +1916,7 @@ body {
     line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 4;
+    line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     flex: 1;
