@@ -1,0 +1,61 @@
+/* Fancy colorful animated profile image border */
+
+.profile-image {
+    position: relative !important;
+    z-index: 1 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+/* Create a wrapper around the image with the fancy border */
+.profile-image::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    z-index: -1;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    animation: animate-border 12s linear infinite;
+}
+
+/* Add a glowing effect */
+.profile-image::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    z-index: -1;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    filter: blur(10px);
+    animation: animate-border 8s linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes animate-border {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Ensure the image is properly contained within the circular container */
+.profile-image img {
+    position: relative;
+    z-index: 2;
+    border-radius: 50%;
+    display: block;
+}

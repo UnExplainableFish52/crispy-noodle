@@ -1,0 +1,106 @@
+/* Enhanced Glowing Border Effect for Profile Image */
+
+/* Base container for the profile image */
+.profile-image {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.5rem;
+  position: relative !important;
+  border-radius: 50%;
+  
+  /* Remove properties that would hide the glow */
+  overflow: visible !important; 
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  
+  /* Add fancy hover effect */
+  transition: transform 0.5s ease;
+}
+
+.profile-image:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* Inner image styling */
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Create the colorful animated border */
+.profile-image::before {
+  content: "";
+  position: absolute;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  top: -8px;
+  left: -8px;
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300, 
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  border-radius: 50%;
+  z-index: 1;
+  animation: animate-border 10s linear infinite;
+  background-size: 400%;
+}
+
+/* Create the blurred glow effect */
+.profile-image::after {
+  content: "";
+  position: absolute;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  top: -20px;
+  left: -20px;
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  border-radius: 50%;
+  z-index: 0;
+  animation: animate-border 10s ease infinite;
+  background-size: 400%;
+  filter: blur(25px);
+  opacity: 0.8;
+}
+
+/* Animation for the glowing effect */
+@keyframes animate-border {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

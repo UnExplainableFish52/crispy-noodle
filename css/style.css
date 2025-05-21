@@ -1,7 +1,10 @@
 :root {
-    --primary-color: #5F9EA0;  /* Beautiful teal */
-    --accent-color: #E6E6FA;   /* Lavender */
-    --highlight-color: #00CED1; /* Cyan */
+    --primary-color: #5F9EA0;
+    /* Beautiful teal */
+    --accent-color: #E6E6FA;
+    /* Lavender */
+    --highlight-color: #00CED1;
+    /* Cyan */
     --bg-color: #1a1a1a;
     --text-color: #ffffff;
     --secondary-bg: #2a2a2a;
@@ -37,14 +40,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.3rem 2rem; /* Reduced padding */
+    padding: 0.3rem 2rem;
+    /* Reduced padding */
     background-color: var(--secondary-bg);
-    border-bottom: 1px solid var(--highlight-color); /* Thinner border */
+    border-bottom: 1px solid var(--highlight-color);
+    /* Thinner border */
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 .nav-brand {
     display: flex;
     align-items: center;
@@ -55,7 +61,8 @@ body {
 .nav-brand a {
     color: var(--highlight-color);
     text-decoration: none;
-    font-size: 1.1rem; /* Slightly smaller */
+    font-size: 1.1rem;
+    /* Slightly smaller */
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -64,7 +71,8 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 1.5rem; /* Reduced gap */
+    gap: 1.5rem;
+    /* Reduced gap */
 }
 
 .nav-link {
@@ -73,7 +81,8 @@ body {
     transition: var(--transition);
     position: relative;
     padding-bottom: 2px;
-    font-size: 0.95rem; /* Slightly smaller */
+    font-size: 0.95rem;
+    /* Slightly smaller */
 }
 
 .nav-link::after {
@@ -83,27 +92,32 @@ body {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background-color: var(--highlight-color); /* Using cyan for underline */
+    background-color: var(--highlight-color);
+    /* Using cyan for underline */
     transition: width 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
     width: 100%;
-    box-shadow: 0 0 8px var(--highlight-color); /* Glowing effect */
+    box-shadow: 0 0 8px var(--highlight-color);
+    /* Glowing effect */
 }
 
 /* Mobile Menu Toggle Button */
 .mobile-menu-toggle {
-    display: none; /* Hidden by default, shown only on mobile */
+    display: none;
+    /* Hidden by default, shown only on mobile */
     background: none;
     border: none;
     color: var(--accent-color);
-    font-size: 1.5rem; /* Increased size for better visibility */
+    font-size: 1.5rem;
+    /* Increased size for better visibility */
     cursor: pointer;
     transition: var(--transition);
     padding: 0.3rem;
-    margin-left: auto; /* Push to the right */
+    margin-left: auto;
+    /* Push to the right */
 }
 
 .mobile-menu-toggle:hover {
@@ -150,16 +164,17 @@ body {
     .navbar {
         padding: 0.5rem 1.5rem;
     }
-    
+
     .nav-brand {
         width: 100%;
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .mobile-menu-toggle {
         display: block;
     }
+
     .nav-header {
         display: block;
         text-align: center;
@@ -167,9 +182,12 @@ body {
         margin-bottom: 1rem;
         padding-top: 0.5rem;
     }
+
     .nav-links {
-        position: fixed; /* Changed from absolute to fixed */
-        top: 60px; /* Set specific top value to position below navbar */
+        position: fixed;
+        /* Changed from absolute to fixed */
+        top: 60px;
+        /* Set specific top value to position below navbar */
         left: 0;
         right: 0;
         flex-direction: column;
@@ -179,26 +197,32 @@ body {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
-        z-index: 1000; /* Increased z-index */
+        z-index: 1000;
+        /* Increased z-index */
         opacity: 0;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Added shadow */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        /* Added shadow */
     }
-    
+
     .nav-menu-title {
         text-align: center;
         margin: 0 auto;
     }
-    
+
     .nav-links.active {
-        max-height: 500px; /* Increased from 300px */
+        max-height: 500px;
+        /* Increased from 300px */
         padding: 1rem 0;
         opacity: 1;
-        overflow-y: auto; /* Added scrolling if needed */
+        overflow-y: auto;
+        /* Added scrolling if needed */
     }
+
     .nav-links.active .nav-menu-header {
         align-content: center;
         display: block;
     }
+
     /* Added for better touch targets */
     .nav-link {
         width: 100%;
@@ -206,6 +230,7 @@ body {
         padding: 0.8rem 0;
     }
 }
+
 /* Navigation Menu Header Styles */
 .nav-menu-header {
     display: none;
@@ -213,7 +238,8 @@ body {
     align-items: center;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(95, 158, 160, 0.3); /* Semi-transparent primary color border */
+    border-bottom: 1px solid rgba(95, 158, 160, 0.3);
+    /* Semi-transparent primary color border */
     width: 100%;
 }
 
@@ -244,8 +270,10 @@ body {
 /* Update media query for mobile menu */
 @media screen and (max-width: 768px) {
     .nav-links {
-        justify-content: flex-start; /* Change from center to start */
-        padding-top: 2rem; /* Add padding to top */
+        justify-content: flex-start;
+        /* Change from center to start */
+        padding-top: 2rem;
+        /* Add padding to top */
     }
 }
 
@@ -307,37 +335,7 @@ body {
     pointer-events: none;
 }
 
-/* Profile image styles - updated for better circular fit */
-.profile-image {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 1.5rem;
-    position: relative;
-    border-radius: 50%;
-    background-color: var(--secondary-bg);
-    border: 3px solid var(--primary-color);
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 206, 209, 0.3);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.profile-image:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(0, 206, 209, 0.4);
-}
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    mix-blend-mode: normal;
-    transition: transform 0.3s ease;
-}
-
-.profile-image:hover img {
-    transform: scale(1.05);
-}
+/* Profile image styles moved to enhanced-border.css */
 
 .name {
     font-size: 2.6rem;
@@ -481,11 +479,13 @@ body {
     text-align: justify;
     color: var(--text-color);
     opacity: 0.9;
-    line-height: 1.8;
-    padding: 0 1rem;
+    line-height: 1.6;
+    padding: 0 20px;
     position: relative;
-    max-width: 800px;
+    max-width: 700px;
     margin-left: auto;
+    hyphens: auto;
+    word-spacing: normal;
     margin-right: auto;
 }
 
@@ -581,6 +581,7 @@ body {
     0% {
         transform: translateX(-100%);
     }
+
     100% {
         transform: translateX(100%);
     }
@@ -870,6 +871,7 @@ body {
 .writings-header {
     text-align: center;
     margin-bottom: 3rem;
+    color: #80fdff;
 }
 
 .writings-subtitle {
@@ -1433,6 +1435,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1441,6 +1444,7 @@ body {
 
 /* Responsive styles */
 @media (max-width: 1100px) {
+
     .contact-container,
     .projects-container,
     .writings-container,
@@ -1463,18 +1467,18 @@ body {
     .contact-form-container {
         padding: 2.5rem;
     }
-    
+
     .contact-social {
         margin-top: 2rem;
         padding-top: 2rem;
     }
-    
+
     .projects-grid,
     .writings-grid,
     .skills-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
-    
+
     .timeline {
         padding-left: 2rem;
     }
@@ -1499,31 +1503,31 @@ body {
     .content {
         padding: 1.5rem 0;
     }
-    
+
     .contact-container .page-title,
     .page-title {
         font-size: 2rem;
     }
-    
+
     .contact-info-title,
     .form-title {
         font-size: 1.5rem;
         margin-bottom: 2rem;
     }
-    
+
     .projects-grid,
     .writings-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .name {
         font-size: 2.2rem;
     }
-    
+
     .bio {
         padding: 0;
     }
-    
+
     .timeline-title {
         font-size: 1.2rem;
     }
@@ -1558,24 +1562,25 @@ body {
         width: 100%;
         justify-content: center;
     }
-    
+
     .contact-subtitle {
         font-size: 0.95rem;
     }
-    
+
     .timeline {
         padding-left: 1.5rem;
     }
-    
+
     .timeline-item {
         padding-left: 1rem;
     }
-    
+
     .resume-button {
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
     }
 }
+
 /* ===== SKILLS PAGE STYLES ===== */
 .skills-container {
     max-width: 800px;
@@ -1626,7 +1631,8 @@ body {
     height: 100%;
     background-color: var(--primary-color);
     border-radius: 4px;
-    width: 0; /* Initial width is 0, will be animated */
+    width: 0;
+    /* Initial width is 0, will be animated */
 }
 
 /* ===== EXPERIENCE PAGE STYLES ===== */
@@ -2328,7 +2334,7 @@ body {
     .contact-container {
         max-width: 950px;
     }
-    
+
     .writings-container {
         max-width: 900px;
     }
@@ -2346,12 +2352,12 @@ body {
     .contact-form-container {
         padding: 2.5rem;
     }
-    
+
     .contact-social {
         margin-top: 2rem;
         padding-top: 2rem;
     }
-    
+
     .writings-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
@@ -2361,22 +2367,22 @@ body {
     .content {
         padding: 1.5rem 0;
     }
-    
+
     .writings-container .page-title {
         font-size: 2rem;
     }
-    
+
     .contact-info-title,
     .form-title {
         font-size: 1.5rem;
         margin-bottom: 2rem;
     }
-    
+
     .projects-grid,
     .writings-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .writing-card {
         max-height: none;
     }
@@ -2407,22 +2413,23 @@ body {
         width: 100%;
         justify-content: center;
     }
-    
+
     .contact-subtitle,
     .writings-subtitle {
         font-size: 0.95rem;
     }
-    
+
     .writing-image-container {
         height: 180px;
     }
-    
+
     .writing-details {
         padding: 1.5rem;
     }
-    
+
     .writing-title {
         font-size: 1.25rem;
     }
 }
+
 /* ===== FOOTER STYLES ===== */
